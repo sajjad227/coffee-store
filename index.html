@@ -2,197 +2,383 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>متجر قهوة مختصة</title>
-<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@600;700&family=Readex+Pro:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#E9EEF0;--card:#fff;--ink:#12303A;--muted:#5B7078;--accent:#E8A317;--line:#CBD6DA}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:"Readex Pro",Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;padding-bottom:90px}
-h1,h2,h3,.logo{font-family:"Reem Kufi","Readex Pro",Tahoma,sans-serif}
-button{font:inherit;cursor:pointer;border:0}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-
-header{position:sticky;top:0;z-index:5;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
-.logo{font-size:22px;font-weight:700}
-.cart-btn{background:var(--accent);color:var(--ink);padding:8px 16px;border-radius:99px;font-weight:500;display:flex;gap:8px;align-items:center}
-.cart-btn b{background:var(--ink);color:#fff;min-width:22px;height:22px;border-radius:99px;display:grid;place-items:center;font-size:13px}
-
-.hero{padding:34px 18px 10px;max-width:760px;margin:auto}
-.hero h1{font-size:clamp(30px,8vw,48px);line-height:1.25;font-weight:700}
-.hero p{color:var(--muted);margin-top:10px;max-width:46ch}
-.filters{display:flex;gap:8px;margin-top:22px;overflow-x:auto;padding-bottom:4px}
-.filters button{background:transparent;border:1.5px solid var(--ink);color:var(--ink);padding:7px 18px;border-radius:99px;white-space:nowrap}
-.filters button[aria-pressed="true"]{background:var(--ink);color:#fff}
-
-main{max-width:760px;margin:auto;padding:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-.card{background:var(--card);border-radius:18px;padding:14px;display:flex;flex-direction:column}
-.card svg{width:100%;height:150px}
-.card h3{font-size:19px;margin-top:8px}
-.notes{color:var(--muted);font-size:14px;flex:1}
-.row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-.price{font-weight:500}
-.add{background:var(--ink);color:#fff;padding:7px 14px;border-radius:10px;font-size:14px}
-.add:active{transform:scale(.96)}
-
-.drawer{position:fixed;inset:auto 0 0 0;max-height:80vh;background:#fff;border-radius:22px 22px 0 0;box-shadow:0 -10px 40px rgba(18,48,58,.25);transform:translateY(105%);transition:transform .25s;z-index:10;display:flex;flex-direction:column}
-.drawer.open{transform:none}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
-.drawer-head h2{font-size:22px}
-.close{background:var(--bg);width:36px;height:36px;border-radius:50%;font-size:18px}
-.items{overflow:auto;padding:6px 20px}
-.item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);gap:10px}
-.item small{color:var(--muted);display:block}
-.qty{display:flex;align-items:center;gap:10px}
-.qty button{width:30px;height:30px;border-radius:50%;background:var(--bg);font-size:17px}
-.empty{color:var(--muted);padding:24px 0;text-align:center}
-.foot{padding:16px 20px;border-top:1px solid var(--line)}
-.total{display:flex;justify-content:space-between;font-size:18px;font-weight:500;margin-bottom:12px}
-.field{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;font:inherit;margin-bottom:10px}
-.send{width:100%;background:#1FA855;color:#fff;padding:13px;border-radius:12px;font-weight:500;font-size:16px}
-.send:disabled{background:var(--line);cursor:not-allowed}
-.scrim{position:fixed;inset:0;background:rgba(18,48,58,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:9}
-.scrim.open{opacity:1;pointer-events:auto}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بن الحصاد</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --accent-color: #f39c12;
+            --text-color: #ffffff;
+            --text-muted: #aaaaaa;
+        }
+        body {
+            font-family: 'Cairo', sans-serif, Tahoma;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #1a1a1a;
+            border-bottom: 1px solid #333;
+        }
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .cart-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .hero {
+            text-align: center;
+            padding: 20px;
+        }
+        .hero h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        .hero p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .cat-btn {
+            background-color: #2c2c2c;
+            color: var(--text-color);
+            border: none;
+            padding: 8.20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .cat-btn.active {
+            background-color: #fff;
+            color: #000;
+            font-weight: bold;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 15px 30px 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .product-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .add-to-cart {
+            background-color: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        /* نافذة السلة */
+        .cart-modal {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1a1a1a;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .cart-modal.open {
+            transform: translateY(0);
+        }
+        .close-cart {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            float: left;
+        }
+        .cart-items-list {
+            margin: 15px 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #2c2c2c;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        .whatsapp-btn {
+            background-color: #25d366;
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <span class="logo" id="storeName"></span>
-  <button class="cart-btn" id="openCart" aria-label="فتح السلة">السلة <b id="count">0</b></button>
-</header>
+    <header>
+        <div class="logo">بن الحصاد</div>
+        <button class="cart-btn" onclick="toggleCart()">السلة (<span id="cart-count">0</span>)</button>
+    </header>
 
-<section class="hero">
-  <h1>قهوة محمصة طازجة، تصلك خلال يومين</h1>
-  <p>اختر درجة التحميص التي تناسبك، وأرسل طلبك مباشرة عبر واتساب.</p>
-  <div class="filters" id="filters" role="group" aria-label="درجة التحميص"></div>
-</section>
+    <section class="hero">
+        <h1>قهوة محمصة طازجة، تصلك خلال يومين</h1>
+        <p>اختار درجة التحميص التي تناسبك، وأرسل طلبك مباشرة عبر واتساب.</p>
+    </section>
 
-<main id="grid"></main>
+    <div class="categories">
+        <button class="cat-btn active" onclick="filterCategory('all', this)">الكل</button>
+        <button class="cat-btn" onclick="filterCategory('light', this)">فاتح</button>
+        <button class="cat-btn" onclick="filterCategory('medium', this)">متوسط</button>
+        <button class="cat-btn" onclick="filterCategory('dark', this)">داكن</button>
+    </div>
 
-<div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-label="سلة المشتريات">
-  <div class="drawer-head"><h2>سلتك</h2><button class="close" id="closeCart" aria-label="إغلاق">✕</button></div>
-  <div class="items" id="items"></div>
-  <div class="foot">
-    <div class="total"><span>المجموع</span><span id="total">0</span></div>
-    <input class="field" id="custName" placeholder="اسمك">
-    <input class="field" id="custAddr" placeholder="عنوان التوصيل">
-    <button class="send" id="send" disabled>إرسال الطلب عبر واتساب</button>
-  </div>
-</aside>
+    <div class="products-grid" id="products-grid">
+        <!-- يتم تعبئة المنتجات تلقائياً عبر JavaScript -->
+    </div>
 
-<script>
-/* ===== إعدادات المتجر: عدّلها فقط ===== */
-const STORE_NAME = "بن الحصاد";
-const WHATSAPP   = "9647700000000";   // رقمك بصيغة دولية بدون + أو أصفار
-const CURRENCY   = "د.ع";
+    <!-- نافذة السلة -->
+    <div class="cart-modal" id="cartModal">
+        <button class="close-cart" onclick="toggleCart()">✕</button>
+        <h3>سلتك</h3>
+        <div class="cart-items-list" id="cartItemsList">
+            <p>السلة فارغة، أضف منتجاً من القائمة.</p>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px;">
+            <span>المجموع</span>
+            <span id="total-price">0 د.ع</span>
+        </div>
+        <input type="text" id="customerName" class="input-field" placeholder="اسمك">
+        <input type="text" id="customerAddress" class="input-field" placeholder="عنوان التوصيل">
+        <button class="whatsapp-btn" onclick="sendWhatsApp()">إرسال الطلب عبر واتساب</button>
+    </div>
 
-/* ===== المنتجات: أضف أو احذف كما تشاء ===== */
-const PRODUCTS = [
-  {id:1, name:"إثيوبيا يرغاتشيف", notes:"زهور وحمضيات، قوام خفيف", price:18000, roast:"فاتح",  color:"#E8A317"},
-  {id:2, name:"كولومبيا هويلا",   notes:"كراميل وفاكهة حمراء",     price:16000, roast:"متوسط", color:"#C8553D"},
-  {id:3, name:"البرازيل سانتوس",  notes:"شوكولاتة ومكسرات",        price:14000, roast:"متوسط", color:"#6B8F71"},
-  {id:4, name:"هرر اليمن",        notes:"توابل وتمر، قوام ثقيل",   price:22000, roast:"داكن",  color:"#7A4B3A"},
-  {id:5, name:"خلطة الصباح",      notes:"متوازنة، تناسب الفلتر",   price:12000, roast:"متوسط", color:"#2F6F8F"},
-  {id:6, name:"إسبريسو الحصاد",   notes:"كريمة كثيفة ونهاية حلوة", price:15000, roast:"داكن",  color:"#3B3B4F"}
-];
+    <script>
+        // بيانات المنتجات مع روابط الصور الحقيقية (قم بتغيير روابط الصور إلى روابط صور منتجاتك الفعلية المرفوعة على GitHub أو أي مسستودع صور)
+        const products = [
+            {
+                id: 1,
+                name: "إثيوبيا يرجاشيف",
+                desc: "زهور وحمضيات، قوام خفيف",
+                price: 18000,
+                category: "light",
+                image: "images/ethiopia.png" // ضع مسار أو رابط صورتك الحقيقية هنا
+            },
+            {
+                id: 2,
+                name: "كولومبيا هوِيلا",
+                desc: "كاراميل وفاكهة حمراء",
+                price: 16000,
+                category: "light",
+                image: "images/colombia.png"
+            },
+            {
+                id: 3,
+                name: "البرازيل سانتوس",
+                desc: "شوكولاتة ومكسرات",
+                price: 14000,
+                category: "medium",
+                image: "images/brazil.png"
+            },
+            {
+                id: 4,
+                name: "مير اليمن",
+                desc: "توابل وثمن قوام ثقيل",
+                price: 22000,
+                category: "dark",
+                image: "images/yemen.png"
+            },
+            {
+                id: 5,
+                name: "خلطة السحاب",
+                desc: "متوازنة، تناسب الفلتر",
+                price: 12000,
+                category: "medium",
+                image: "images/cloud.png"
+            },
+            {
+                id: 6,
+                name: "إسبريسو المساء",
+                desc: "كريمة كثيفة ونهاية حلوة",
+                price: 15000,
+                category: "dark",
+                image: "images/espresso.png"
+            }
+        ];
 
-const fmt = n => n.toLocaleString("en-US") + " " + CURRENCY;
-const $ = id => document.getElementById(id);
-const cart = {};           // id -> الكمية
-let roast = "الكل";
+        let cart = [];
 
-$("storeName").textContent = STORE_NAME;
-document.title = STORE_NAME;
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+            
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+            
+            filtered.forEach(product => {
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.name}" class="product-img" onerror="this.src='https://via.placeholder.com/150?text=Coffee'">
+                        <div>
+                            <div class="product-title">${product.name}</div>
+                            <div class="product-desc">${product.desc}</div>
+                            <div class="product-price">${product.price.toLocaleString()} د.ع</div>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">أضف للسلة</button>
+                    </div>
+                `;
+            });
+        }
 
-const bag = c => `<svg viewBox="0 0 120 150" aria-hidden="true">
-  <path d="M30 24h60l8 112H22z" fill="${c}"/>
-  <path d="M30 24h60l1 14H29z" fill="rgba(0,0,0,.18)"/>
-  <rect x="40" y="62" width="40" height="44" rx="6" fill="#fff" opacity=".92"/>
-  <circle cx="60" cy="84" r="9" fill="${c}"/>
-</svg>`;
+        function filterCategory(category, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProducts(category);
+        }
 
-/* الفلاتر */
-const roasts = ["الكل","فاتح","متوسط","داكن"];
-$("filters").innerHTML = roasts.map(r =>
-  `<button data-r="${r}" aria-pressed="${r===roast}">${r}</button>`).join("");
-$("filters").onclick = e => {
-  const b = e.target.closest("button"); if(!b) return;
-  roast = b.dataset.r;
-  [...$("filters").children].forEach(x => x.setAttribute("aria-pressed", x.dataset.r===roast));
-  renderGrid();
-};
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+            
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            updateCartUI();
+            toggleCart();
+        }
 
-/* المنتجات */
-function renderGrid(){
-  const list = PRODUCTS.filter(p => roast==="الكل" || p.roast===roast);
-  $("grid").innerHTML = list.map(p => `
-    <article class="card">
-      ${bag(p.color)}
-      <h3>${p.name}</h3>
-      <p class="notes">${p.notes}</p>
-      <div class="row"><span class="price">${fmt(p.price)}</span>
-      <button class="add" data-id="${p.id}">أضف للسلة</button></div>
-    </article>`).join("");
-}
-$("grid").onclick = e => {
-  const b = e.target.closest(".add"); if(!b) return;
-  const id = +b.dataset.id;
-  cart[id] = (cart[id]||0) + 1;
-  renderCart();
-};
+        function updateCartUI() {
+            const countElem = document.getElementById('cart-count');
+            const listElem = document.getElementById('cartItemsList');
+            const totalElem = document.getElementById('total-price');
+            
+            let totalCount = 0;
+            let totalPrice = 0;
+            
+            if (cart.length === 0) {
+                listElem.innerHTML = '<p>السلة فارغة، أضف منتجاً من القائمة.</p>';
+            } else {
+                listElem.innerHTML = '';
+                cart.forEach(item => {
+                    totalCount += item.qty;
+                    totalPrice += item.price * item.qty;
+                    listElem.innerHTML += `
+                        <div class="cart-item">
+                            <span>${item.name} (${item.qty})</span>
+                            <span>${(item.price * item.qty).toLocaleString()} د.ع</span>
+                        </div>
+                    `;
+                });
+            }
+            countElem.innerText = totalCount;
+            totalElem.innerText = totalPrice.toLocaleString() + ' د.ع';
+        }
 
-/* السلة */
-function renderCart(){
-  const ids = Object.keys(cart).filter(id => cart[id] > 0);
-  const total = ids.reduce((s,id) => s + PRODUCTS.find(p=>p.id==id).price * cart[id], 0);
-  $("count").textContent = ids.reduce((s,id)=>s+cart[id],0);
-  $("total").textContent = fmt(total);
-  $("send").disabled = !ids.length;
-  $("items").innerHTML = ids.length ? ids.map(id => {
-    const p = PRODUCTS.find(p=>p.id==id);
-    return `<div class="item"><div>${p.name}<small>${fmt(p.price)}</small></div>
-      <div class="qty"><button data-a="-" data-id="${id}" aria-label="إنقاص">−</button>
-      <span>${cart[id]}</span>
-      <button data-a="+" data-id="${id}" aria-label="زيادة">+</button></div></div>`;
-  }).join("") : `<p class="empty">السلة فارغة. أضف منتجاً من القائمة.</p>`;
-}
-$("items").onclick = e => {
-  const b = e.target.closest("button"); if(!b) return;
-  cart[b.dataset.id] += b.dataset.a==="+" ? 1 : -1;
-  renderCart();
-};
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('open');
+        }
 
-const toggle = open => {
-  $("drawer").classList.toggle("open", open);
-  $("scrim").classList.toggle("open", open);
-};
-$("openCart").onclick = () => toggle(true);
-$("closeCart").onclick = $("scrim").onclick = () => toggle(false);
-document.addEventListener("keydown", e => e.key==="Escape" && toggle(false));
+        function sendWhatsApp() {
+            const name = document.getElementById('customerName').value;
+            const address = document.getElementById('customerAddress').value;
+            
+            if (!name || !address) {
+                alert('الرجاء إدخال الاسم وعنوان التوصيل');
+                return;
+            }
+            
+            let message = `مرحباً، أريد طلب المنتجات التالية:\n`;
+            let total = 0;
+            
+            cart.forEach(item => {
+                message += `- ${item.name} (${item.qty}) : ${item.price * item.qty} د.ع\n`;
+                total += item.price * item.qty;
+            });
+            
+            message += `\nالمجموع الكلي: ${total} د.ع\nالاسم: ${name}\nالعنوان: ${address}`;
+            
+            const phone = "9647800000000"; // استبدل هذا الرقم برقم الواتساب الخاص بك
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
 
-/* الإرسال عبر واتساب */
-$("send").onclick = () => {
-  const ids = Object.keys(cart).filter(id => cart[id] > 0);
-  const lines = ids.map(id => {
-    const p = PRODUCTS.find(p=>p.id==id);
-    return `• ${p.name} × ${cart[id]} = ${fmt(p.price*cart[id])}`;
-  });
-  const msg = [
-    `طلب جديد من ${STORE_NAME}`, "", ...lines, "",
-    `المجموع: ${$("total").textContent}`,
-    `الاسم: ${$("custName").value || "-"}`,
-    `العنوان: ${$("custAddr").value || "-"}`
-  ].join("\n");
-  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
-};
-
-renderGrid();
-renderCart();
-</script>
+        // تشغيل العرض عند التحميل
+        renderProducts();
+    </script>
 </body>
-  </html>
+</html>
